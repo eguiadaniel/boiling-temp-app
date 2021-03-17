@@ -1,14 +1,7 @@
 import React, { Component } from 'react'
-import BoilingVerdict from './BoilingVerdict'
+
 
 class TemperatureInput extends Component {
-
-  constructor (props) {
-    super(props);
-    this.state = {
-      temperature:''
-    }
-  }
 
   scaleNames = {
     c: 'Celsius',
@@ -17,14 +10,16 @@ class TemperatureInput extends Component {
 
   handleChange = (e) => {
     const value = e.target.value;
-    this.setState({
-      temperature: value
-    })
+    // this.setState({
+    //   temperature: value
+    // })
+    this.props.onTemperatureChange(value)
   }
+  
 
   render() {
 
-    const temperature = this.state.temperature;
+    const temperature = this.props.temperature;
     const scale = this.props.scale;
 
     return (
@@ -35,7 +30,7 @@ class TemperatureInput extends Component {
         value={temperature}
         onChange={e => this.handleChange(e)} />
       </fieldset>
-      <BoilingVerdict celsius={parseFloat(temperature)} />
+      
       </div>
     )
   }
